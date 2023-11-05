@@ -6,6 +6,7 @@ const Wrapper = styled.div`
 	height: 100vh;
 	justify-content: center;
 	align-items: center;
+	background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const rotation = keyframes`
@@ -31,7 +32,7 @@ const Box = styled.div`
 	width: 200px;
 	justify-content: center;
 	align-items: center;
-	background-color: tomato;
+	background-color: ${(props) => props.theme.textColor};
 	animation: ${rotation} linear infinite 2s;
 	display: flex;
 	${Emoji}:hover {
