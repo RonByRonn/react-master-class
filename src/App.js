@@ -1,17 +1,29 @@
 import styled, { keyframes } from "styled-components";
 
+const Wrapper = styled.div`
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+`;
+
 const rotation = keyframes`
-0% {
-  transform: rotate(0deg);
-  border-radius: 0px;
-}
-50% {
-  border-radius: 100px;
-}
-100% { 
-  transform: rotate(360deg);
-  border-radius: 0px;
-}
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  }
+  50% {
+    border-radius: 100px;
+  }
+  100% { 
+    transform: rotate(360deg);
+    border-radius: 0px;
+  }
+`;
+
+const Emoji = styled.div`
+	font-size: 80px;
 `;
 
 const Box = styled.div`
@@ -22,24 +34,18 @@ const Box = styled.div`
 	background-color: tomato;
 	animation: ${rotation} linear infinite 2s;
 	display: flex;
-	span {
-		font-size: 80px;
-		&:hover {
-			font-size: 160px;
-		}
-		&:active {
-			opacity: 0;
-		}
+	${Emoji}:hover {
+		font-size: 160px;
 	}
 `;
 
 function App() {
 	return (
-		<div>
+		<Wrapper>
 			<Box>
-				<span>😎</span>
+				<Emoji as="p">😎</Emoji>
 			</Box>
-		</div>
+		</Wrapper>
 	);
 }
 
