@@ -31,56 +31,104 @@ function Chart({ coinId }: ChartProps) {
 				"Loading chart..."
 			) : (
 				<ApexChart
-					type="line"
+					type="candlestick"
+					// type="line"
 					series={[
 						{
 							name: "Price",
-							data: data?.map((price) => price.close) ?? [],
+							data:
+								data?.map((i) => ({
+									x: new Date(i.time_close * 1000).toUTCString(),
+									y: [i.open, i.high, i.low, i.close],
+								})) ?? [],
 						},
 					]}
+					// series={[
+					// 	{
+					// 		name: "Price",
+					// 		data: data?.map((price) => price.close) ?? [],
+					// 	},
+					// ]}
+					// options={{
+					// 	chart: {
+					// 		height: 500,
+					// 		width: 500,
+					// 		toolbar: {
+					// 			show: false,
+					// 		},
+					// 		background: "transparent",
+					// 	},
+					// 	grid: {
+					// 		show: false,
+					// 	},
+					// 	yaxis: {
+					// 		show: false,
+					// 	},
+					// 	xaxis: {
+					// 		type: "datetime",
+					// 		labels: {
+					// 			style: {
+					// 				colors: "tomato",
+					// 			},
+					// 		},
+					// 		// axisTicks: {
+					// 		// 	show: false,
+					// 		// },
+					// 		// axisBorder: {
+					// 		// 	show: false,
+					// 		// },
+
+					// 		categories: data?.map((price) =>
+					// 			new Date(price.time_close * 1000).toUTCString()
+					// 		),
+					// 	},
+					// 	// theme: { mode: "dark" },
+					// 	stroke: {
+					// 		curve: "smooth",
+					// 		width: 4,
+					// 	},
+					// 	fill: {
+					// 		type: "gradient",
+					// 		gradient: { gradientToColors: ["blue"], stops: [0, 100] },
+					// 	},
+					// 	colors: ["red"],
+					// 	tooltip: {
+					// 		y: {
+					// 			formatter: (value) => `$ ${value.toFixed(2)}`,
+					// 		},
+					// 	},
+					// }}
 					options={{
 						chart: {
-							height: 500,
-							width: 500,
-							toolbar: {
-								show: false,
+							type: "candlestick",
+							height: 350,
+						},
+						title: {
+							text: "CandleStick Chart",
+							align: "left",
+							style: {
+								color: "tomato",
 							},
-							background: "transparent",
-						},
-						grid: {
-							show: false,
-						},
-						yaxis: {
-							show: false,
 						},
 						xaxis: {
 							type: "datetime",
 							labels: {
-								show: false,
+								style: {
+									colors: "tomato",
+								},
 							},
-							axisTicks: {
-								show: false,
+							tooltip: {
+								enabled: true,
 							},
-							axisBorder: {
-								show: false,
+						},
+						yaxis: {
+							tooltip: {
+								enabled: true,
 							},
-							categories: data?.map((price) =>
-								new Date(price.time_close * 1000).toUTCString()
-							),
-						},
-						theme: { mode: "dark" },
-						stroke: {
-							curve: "smooth",
-							width: 4,
-						},
-						fill: {
-							type: "gradient",
-							gradient: { gradientToColors: ["blue"], stops: [0, 100] },
-						},
-						colors: ["red"],
-						tooltip: {
-							y: {
-								formatter: (value) => `$ ${value.toFixed(2)}`,
+							labels: {
+								style: {
+									colors: "tomato",
+								},
 							},
 						},
 					}}

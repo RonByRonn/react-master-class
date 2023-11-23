@@ -25,6 +25,7 @@ const Header = styled.header`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 `;
 
 const Title = styled.h1`
@@ -79,6 +80,16 @@ const Tab = styled.span<{ isActive: boolean }>`
 	a {
 		display: block;
 	}
+`;
+
+// const HomeButton = styled.button``;
+
+const Img = styled.img`
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	left: 30px;
+	top: 45px;
 `;
 
 interface Params {
@@ -202,6 +213,11 @@ function Coin() {
 				<Title>
 					{state?.name ? state.name : loading ? "Loading..." : infoData?.name}
 				</Title>
+				<Link to={{ pathname: "/" }}>
+					<Img
+						src={"https://cdn-icons-png.flaticon.com/512/7781/7781465.png"}
+					/>
+				</Link>
 			</Header>
 			{loading ? (
 				<Loader>Loading...</Loader>
@@ -242,7 +258,12 @@ function Coin() {
 					</Tabs>
 					<Switch>
 						<Route path={`/:coinId/price`}>
-							<Price />
+							<Price
+								ath_price={tickersData?.quotes.USD.ath_price}
+								market_cap={tickersData?.quotes.USD.market_cap}
+								percent_change_1h={tickersData?.quotes.USD.percent_change_1h}
+								percent_change_24h={tickersData?.quotes.USD.percent_change_24h}
+							/>
 						</Route>
 						<Route path={`/:coinId/chart`}>
 							<Chart coinId={coinId} />
